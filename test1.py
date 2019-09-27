@@ -4,7 +4,10 @@ from pymongo import MongoClient
 dbclient = pymongo.MongoClient('localhost', 27017)
 dbmy = dbclient["testdb"]
 dbcollection = dbmy["reader1"]
-f = open("/diska/Log File/LOG-1.57/log reader sender/reader.log")
+config_d =config['DEFAULT'].getboolean('is_debug')
+if config_d :
+    dbcollection.drop()
+f = open(w_path + "reader.log")
 for line in f:
     list = line.split()
     if "main - INFO - Reader connected" in line:
@@ -42,6 +45,13 @@ for line in f:
         if cursor is not None:
             newparam = {"$push": {"Time": list[1], "IP": list[12], "Rezult": list[11]}}
             dbcollection.update(query, newparam)
+    if "main - INFO - Flash drive connected to reader" in line:
+        query ={"Sid":list[19]}
+        cursor = dbcollection.find_one(query)
+        if cursor:
+            newparam = {"$push": {"Time": list[1], "IP": list[12], "Rezult": list[11]}}
+            cursor.update(newparam)
+
             # if (str.contains("Received data from shell: b'reading"))
             # {
             #     QList<QByteArray> data = line.split(' ');
