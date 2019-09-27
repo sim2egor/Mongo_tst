@@ -27,7 +27,7 @@ for line in f:
                 "Disconnected": ""
             }]
             dbcollection.insert(doc_value)
-            Sid= list[12]
+            Sid = list[12]
 
     if "main - INFO - Reader disconnected." in line:
         query = {"Sid": list[12]}
@@ -35,37 +35,32 @@ for line in f:
         if cursor is not None:
             newparam = {"$set": {"Disconnected": list[1]}}
             dbcollection.update_one(query, newparam)
-            Sid= None
+            Sid = None
     if "Received data from shell: b'reading" in line:
-     query={"Sid":list[12]}
-     cursor=dbcollection.find_one(query)
-     if cursor is not None:
-        newparam= {"$push":{
-      "Time": list[1],
-      "IP": list[12],
-      "Rezult": list[11]
-        }
-        }
-        dbcollection.update(query,newparam)
-        # if (str.contains("Received data from shell: b'reading"))
-        # {
-        #     QList<QByteArray> data = line.split(' ');
-        #     using builder::stream::array;
-        #     using builder::stream::document;
-        #
-        #     using builder::stream::close_array;
-        #     using builder::stream::close_document;
-        #     using builder::stream::open_array;
-        #     using builder::stream::open_document;
-        #
-        #     collection.find_one_and_update(bsoncxx::builder::stream::document{}
-        #                                        << "Sid" << Sid
-        #                                        << bsoncxx::builder::stream::finalize,
-        #                                    bsoncxx::builder::stream::document{}
-        #                                        << "$push" << open_document << "modify" << open_document << "Time" << data[1].toStdString() << "IP" << data[12].toStdString() << "Result" << data[11].toStdString() << close_document << close_document
-        #
-        #
-        #
+        query = {"Sid": list[12]}
+        cursor = dbcollection.find_one(query)
+        if cursor is not None:
+            newparam = {"$push": {"Time": list[1], "IP": list[12], "Rezult": list[11]}}
+            dbcollection.update(query, newparam)
+            # if (str.contains("Received data from shell: b'reading"))
+            # {
+            #     QList<QByteArray> data = line.split(' ');
+            #     using builder::stream::array;
+            #     using builder::stream::document;
+            #
+            #     using builder::stream::close_array;
+            #     using builder::stream::close_document;
+            #     using builder::stream::open_array;
+            #     using builder::stream::open_document;
+            #
+            #     collection.find_one_and_update(bsoncxx::builder::stream::document{}
+            #                                        << "Sid" << Sid
+            #                                        << bsoncxx::builder::stream::finalize,
+            #                                    bsoncxx::builder::stream::document{}
+            #                                        << "$push" << open_document << "modify" << open_document << "Time" << data[1].toStdString() << "IP" << data[12].toStdString() << "Result" << data[11].toStdString() << close_document << close_document
+            #
+            #
+            #
 
 # dat=[
 #  { "id":110, "data":{"Country":"ES","Count":64}},

@@ -9,10 +9,10 @@ collection = database["test_collection"]
 
 query = {}
 query["data.Country"] = u"ES"
-set1={
-    "$push":{"aaa":1,"bbb":2}
+set1 = {
+    "$push": {"aaa": 1, "bbb": 2}
 }
-collection.update(query,set1)
+collection.update(query, set1)
 cursor = collection.find(query)
 try:
     for doc in cursor:
