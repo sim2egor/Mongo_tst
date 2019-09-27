@@ -12,3 +12,23 @@ topsecret['ForwardX11'] = 'no'  # same here
 config['DEFAULT']['ForwardX11'] = 'yes'
 with open('example.ini', 'w') as configfile:
     config.write(configfile)
+
+config = configparser.ConfigParser()
+config.sections()
+config.read('example.ini')
+config.sections()
+'bitbucket.org' in config
+'bytebong.com' in config
+config['bitbucket.org']['User']
+config['DEFAULT']['Compression']
+topsecret['ForwardX11']
+topsecret['Port']
+for key in config['bitbucket.org']:
+    print(key)
+config['bitbucket.org']['ForwardX11']
+
+config =configparser.ConfigParser()
+config.sections()
+print('-----------------')
+config.read('FILE.INI')
+print(config['DEFAULT']['w_path'])
