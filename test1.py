@@ -1,6 +1,82 @@
-import pymongo, datetime
-from pymongo import MongoClient
+import configparser
+from datetime import datetime
 
+import pymongo
+
+
+def run_reciver(No_Session):
+    try:
+        file_reciver=open(r_path+"receiver.log","rt")
+    except Exception as err:
+        print(err)
+        return
+    Start_Session= False
+    for line in  file_reciver:
+        list = line.split()
+        if "941fd277" in line: #  Kiosk session is
+            Start_Session =True
+        if "973b3d09" in line and Start_Session: #сессия началась и трип создан
+            print(line)
+        if "0641d919" in line:
+            Start_Session =False
+
+
+    pass
+
+
+def a_log(Sid, Num_AS, dat, tim):
+    try:
+        file = open(w_path + "reader_" + Num_AS + "log", "rt")
+    except Exception as err:
+        print('Error')
+        return
+    print(tim)
+    is_good = False
+    No_Session = ""
+    t_start = datetime.strptime(tim, '%H:%M:%S,%f')
+    for line in file:
+        list = line.split()
+        if not is_good:
+            dat1 = datetime.strptime(dat, '%Y-%m-%d')
+            dat2 = datetime.strptime(list[0], '%Y-%b-%d')
+            if dat1 == dat2:
+                t_end = datetime.strptime(list[1], '%H:%M:%S.%f')
+                delta = (t_end - t_start)
+                if delta.total_seconds() < 20:
+                    print(delta.total_seconds())
+                    is_good = True
+                    continue
+            file.close()
+            return
+        else:  # файл текущий
+            if "50f95925" in line:
+                list2 = (list[13]).split('/')
+                print("-----------Start reading---------------")
+                query = {}
+                query = {"Sid": Sid}
+                doc_value = {"$push": {"Session_record":
+                                           {"No_AS": Num_AS,
+                                            "No_Session": list2[3],
+                                            "Connection": [{
+                                                "Data": list[0],
+                                                "Time": list[1]
+                                            }]
+                                            }
+                                       }
+                             }
+
+                dbcollection.update(query, doc_value)
+                No_Session = list2[3]
+        if "9fa17e68" in line: # закончили чтение
+            run_reciver(No_Session)
+                                
+config = configparser.ConfigParser()
+config.sections()
+print('-----------------')
+config.read('FILE.INI')
+print(config['DEFAULT']['w_path'])
+w_path = config['DEFAULT']['w_path']#файлы реадера и сендера
+r_path = config['DEFAULT']['r_path']#фалы ресивера и энкодера
 dbclient = pymongo.MongoClient('localhost', 27017)
 dbmy = dbclient["testdb"]
 dbcollection = dbmy["reader1"]
