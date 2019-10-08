@@ -6,20 +6,39 @@ import pymongo
 
 def run_reciver(No_Session):
     try:
-        file_reciver=open(r_path+"receiver.log","rt")
+        file_reciver = open(r_path + "receiver.log", "rt")
     except Exception as err:
         print(err)
         return
-    Start_Session= False
-    for line in  file_reciver:
+    Start_Session = False
+    for line in file_reciver:
         list = line.split()
-        if "941fd277" in line: #  Kiosk session is
-            Start_Session =True
-        if "973b3d09" in line and Start_Session: #сессия началась и трип создан
+        if "941fd277" in line:  # Kiosk session is startet
+            Start_Session = True
+        if "973b3d09" in line and Start_Session:  # сессия началась и трип создан
             print(line)
-        if "0641d919" in line:
-            Start_Session =False
+            query = {}
+            query["Session_record.No_Session"] = No_Session
+            cursor = dbcollection.find_one(query)
+            if cursor:
+                tmpSid = cursor['Sid']
+                # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
+                # doc_value = {"$push": {"Session_record.$.Trip": {
+                #     "Interval": {"Start": list[11],
+                #                  "Finish": list[15]
+                #                  },
+                #     "Loco_ID": list[4],
+                #     "Cabine_No": list[20],
+                #     "Trip_No": "",
+                #     "Global_No": "",
+                #     "Log_Sender": list[22]}
+                # }
+                # }
+                #
+                # dbcollection.update(query, doc_value)
 
+        if "0641d919" in line:  # end Session
+            Start_Session = False
 
     pass
 
@@ -49,7 +68,7 @@ def a_log(Sid, Num_AS, dat, tim):
             file.close()
             return
         else:  # файл текущий
-            if "50f95925" in line:
+            if "50f95925" in line:  # создание сессии
                 list2 = (list[13]).split('/')
                 print("-----------Start reading---------------")
                 query = {}
@@ -67,16 +86,17 @@ def a_log(Sid, Num_AS, dat, tim):
 
                 dbcollection.update(query, doc_value)
                 No_Session = list2[3]
-        if "9fa17e68" in line: # закончили чтение
+        if "9fa17e68" in line:  # закончили чтение
             run_reciver(No_Session)
-                                
+
+
 config = configparser.ConfigParser()
 config.sections()
 print('-----------------')
 config.read('FILE.INI')
 print(config['DEFAULT']['w_path'])
-w_path = config['DEFAULT']['w_path']#файлы реадера и сендера
-r_path = config['DEFAULT']['r_path']#фалы ресивера и энкодера
+w_path = config['DEFAULT']['w_path']  # файлы реадера и сендера
+r_path = config['DEFAULT']['r_path']  # фалы ресивера и энкодера
 dbclient = pymongo.MongoClient('localhost', 27017)
 dbmy = dbclient["testdb"]
 dbcollection = dbmy["reader1"]
@@ -136,8 +156,6 @@ for line in f:
             # создать новую коллекцию
             a_log(cursor['Sid'], No_AS, list[0], list[1])
             # добавить в основную коллекцию
-            newparam = {"$push": {"Flash_2": {"Time": list[1], "IP": list[12], "Rezult": line}}}
-            x = dbcollection.update(query, newparam)
             doc_value = {"$push": {"ReaderNoAS":
                 {
                     "data": list[0],
@@ -155,22 +173,21 @@ for line in f:
         query["Session_record.No_Session"] = list[9]
         cursor = dbcollection.find_one(query)
         if cursor:
-            tmpSid=cursor['Sid']
-            query={"Sid":tmpSid, "Session_record":{"$elemMatch":{"No_Session":list[9]}}}
-            doc_value = {"$push": {"Session_record.$.Trip":{
-                                            "Interval": { "Start" :list[11],
-                                                           "Finish":list[15]
-                                                           },
-                                            "Loco_ID":list[4],
-                                             "Cabine_No":list[20],
-                                               "Trip_No":"",
-                                               "Global_No":"",
-                                            "Log_Sender": list[22]}
-                                    }
-                             }
+            tmpSid = cursor['Sid']
+            query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
+            doc_value = {"$push": {"Session_record.$.Trip": {
+                "Interval": {"Start": list[11],
+                             "Finish": list[15]
+                             },
+                "Loco_ID": list[4],
+                "Cabine_No": list[20],
+                "Trip_No": "",
+                "Global_No": "",
+                "Log_Sender": list[22]}
+            }
+            }
 
-
-            dbcollection.update(query,doc_value)
+            dbcollection.update(query, doc_value)
 
 print("--------------")
 
