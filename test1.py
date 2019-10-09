@@ -4,7 +4,9 @@ from datetime import datetime
 import pymongo
 
 
-def run_reciver(No_Session):
+def run_reciver(No_Session):# работа с файлом ресивера
+    time_start=""
+    time_finish =""
     try:
         file_reciver = open(r_path + "receiver.log", "rt")
     except Exception as err:
@@ -15,10 +17,15 @@ def run_reciver(No_Session):
         list = line.split()
         if "941fd277" in line:  # Kiosk session is startet
             Start_Session = True
+        if "<8797897123>" in line:
+            print(line)
+            time_start=list[9]
+            time_finish= list[11]
+
         if "973b3d09" in line and Start_Session:  # сессия началась и трип создан
             print(line)
             query = {}
-            query["Session_record.No_Session"] = No_Session
+            query = {"Session_record": {"$elemMatch": {"No_Session": "2834","Trip": {"$elemMatch":{"Interval.Start":"1538704040000"}}}}}
             cursor = dbcollection.find_one(query)
             if cursor:
                 tmpSid = cursor['Sid']
@@ -39,7 +46,9 @@ def run_reciver(No_Session):
 
         if "0641d919" in line:  # end Session
             Start_Session = False
-
+            time_finish =""
+            time_start = ""
+            # отрабатываем энкодер
     pass
 
 
