@@ -1,104 +1,16 @@
 import configparser
-from datetime import datetime
+import logging
 
 import pymongo
 
+import reader_util
 
-def run_reciver(No_Session):# работа с файлом ресивера
-    time_start=""
-    time_finish =""
-    try:
-        file_reciver = open(r_path + "receiver.log", "rt")
-    except Exception as err:
-        print(err)
-        return
-    Start_Session = False
-    for line in file_reciver:
-        list = line.split()
-        if "941fd277" in line:  # Kiosk session is startet
-            Start_Session = True
-        if "<8797897123>" in line:
-            print(line)
-            time_start=list[9]
-            time_finish= list[11]
-
-        if "973b3d09" in line and Start_Session:  # сессия началась и трип создан
-            print(line)
-            query = {}
-            query = {"Session_record": {"$elemMatch": {"No_Session": "2834","Trip": {"$elemMatch":{"Interval.Start":"1538704040000"}}}}}
-            cursor = dbcollection.find_one(query)
-            if cursor:
-                tmpSid = cursor['Sid']
-                # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
-                # doc_value = {"$push": {"Session_record.$.Trip": {
-                #     "Interval": {"Start": list[11],
-                #                  "Finish": list[15]
-                #                  },
-                #     "Loco_ID": list[4],
-                #     "Cabine_No": list[20],
-                #     "Trip_No": "",
-                #     "Global_No": "",
-                #     "Log_Sender": list[22]}
-                # }
-                # }
-                #
-                # dbcollection.update(query, doc_value)
-
-        if "0641d919" in line:  # end Session
-            Start_Session = False
-            time_finish =""
-            time_start = ""
-            # отрабатываем энкодер
-    pass
-
-
-def a_log(Sid, Num_AS, dat, tim):
-    try:
-        file = open(w_path + "reader_" + Num_AS + "log", "rt")
-    except Exception as err:
-        print('Error')
-        return
-    print(tim)
-    is_good = False
-    No_Session = ""
-    t_start = datetime.strptime(tim, '%H:%M:%S,%f')
-    for line in file:
-        list = line.split()
-        if not is_good:
-            dat1 = datetime.strptime(dat, '%Y-%m-%d')
-            dat2 = datetime.strptime(list[0], '%Y-%b-%d')
-            if dat1 == dat2:
-                t_end = datetime.strptime(list[1], '%H:%M:%S.%f')
-                delta = (t_end - t_start)
-                if delta.total_seconds() < 20:
-                    print(delta.total_seconds())
-                    is_good = True
-                    continue
-            file.close()
-            return
-        else:  # файл текущий
-            if "50f95925" in line:  # создание сессии
-                list2 = (list[13]).split('/')
-                print("-----------Start reading---------------")
-                query = {}
-                query = {"Sid": Sid}
-                doc_value = {"$push": {"Session_record":
-                                           {"No_AS": Num_AS,
-                                            "No_Session": list2[3],
-                                            "Connection": [{
-                                                "Data": list[0],
-                                                "Time": list[1]
-                                            }]
-                                            }
-                                       }
-                             }
-
-                dbcollection.update(query, doc_value)
-                No_Session = list2[3]
-        if "9fa17e68" in line:  # закончили чтение
-            run_reciver(No_Session)
-
-
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('myapp.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr)
+logger.setLevel(logging.INFO)
 config = configparser.ConfigParser()
 config.sections()
 print('-----------------')
@@ -113,10 +25,13 @@ config_d = config['DEFAULT'].getboolean('is_debug')
 if config_d:
     dbcollection.drop()
 f = open(w_path + "reader.log")
+logger.info('Mongo and ini')
+
 for line in f:
     list = line.split()
     if "main - INFO - Reader connected" in line:
-        print('ok')
+        logger.info('Reader connected')
+        print('')
         query = {}
         query["data"] = list[0]
         query["time"] = list[1]
@@ -140,13 +55,18 @@ for line in f:
             Sid = list[12]
 
     if "main - INFO - Reader disconnected." in line:
+        logger.info('Reader Disconnected')
+
         query = {"Sid": list[12]}
         cursor = dbcollection.find_one(query)
         if cursor is not None:
             newparam = {"$set": {"Disconnected": [{"Data": list[0], "Time": list[1]}]}}
             dbcollection.update_one(query, newparam)
             Sid = None
+
     if "main - INFO - Flash drive connected to reader" in line:
+        logger.info('Flash connected')
+
         query = {"Sid": list[19]}
         cursor = dbcollection.find_one(query)
         if cursor:
@@ -155,15 +75,23 @@ for line in f:
                                  "No_Flash": "", }}}
             dbcollection.update(query, newparam)
             newparam = {"$set": {"No_AS": list[17]}}
+
             dbcollection.update(query, newparam)
+
             print(cursor)
+
             No_AS = list[17]
     if "Received data from shell: b'reading" in line:
+        logger.info('Recive data')
+
         query["Flash_record.No_AS"] = No_AS
         cursor = dbcollection.find_one(query)
         if cursor is not None:
             # создать новую коллекцию
-            a_log(cursor['Sid'], No_AS, list[0], list[1])
+            # TODO session
+            logger.info('call a_log() %s', No_AS)
+#            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1])
+            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1],w_path,r_path,dbcollection)
             # добавить в основную коллекцию
             doc_value = {"$push": {"ReaderNoAS":
                 {
@@ -178,6 +106,8 @@ for line in f:
             }
             dbcollection.update(query, doc_value)
     if "<e600812c>" in line:
+        logger.info('Sender session trip')
+
         query = {}
         query["Session_record.No_Session"] = list[9]
         cursor = dbcollection.find_one(query)

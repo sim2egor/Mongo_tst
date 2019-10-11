@@ -1,0 +1,444 @@
+2019-10-10 15:20:41,018 INFO Mongo and ini
+2019-10-10 15:20:41,018 INFO Reader connected
+2019-10-10 15:20:41,058 INFO Reader connected
+2019-10-10 15:20:41,060 INFO Reader connected
+2019-10-10 15:20:41,061 INFO Reader connected
+2019-10-10 15:20:41,062 INFO Reader Disconnected
+2019-10-10 15:20:41,064 INFO Flash connected
+2019-10-10 15:20:41,066 INFO Recive data
+2019-10-10 15:20:41,066 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-10 15:20:41,071 INFO Flash connected
+2019-10-10 15:20:41,072 INFO Recive data
+2019-10-10 15:20:41,073 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-10 15:20:41,074 INFO Flash connected
+2019-10-10 15:20:41,076 INFO Recive data
+2019-10-10 15:20:41,076 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-10 15:20:41,077 INFO Flash connected
+2019-10-10 15:20:41,079 INFO Recive data
+2019-10-10 15:20:41,079 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-10 15:20:41,081 INFO Flash connected
+2019-10-10 15:20:41,083 INFO Recive data
+2019-10-10 15:20:41,084 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-10 15:20:41,600 INFO Flash connected
+2019-10-10 15:20:41,602 INFO Recive data
+2019-10-10 15:20:41,603 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-10 15:20:41,924 INFO Sender session trip
+2019-10-10 15:20:41,925 INFO Sender session trip
+2019-10-10 15:20:41,926 INFO Sender session trip
+2019-10-10 15:20:41,927 INFO Sender session trip
+2019-10-10 15:20:41,928 INFO Sender session trip
+2019-10-10 15:20:41,930 INFO Reader connected
+2019-10-10 15:20:41,931 INFO Reader Disconnected
+2019-10-11 10:45:13,707 INFO Mongo and ini
+2019-10-11 10:45:13,718 INFO Reader connected
+2019-10-11 10:45:13,789 INFO Reader connected
+2019-10-11 10:45:13,801 INFO Reader connected
+2019-10-11 10:45:13,805 INFO Reader connected
+2019-10-11 10:45:13,808 INFO Reader Disconnected
+2019-10-11 10:45:13,816 INFO Flash connected
+2019-10-11 10:45:13,823 INFO Recive data
+2019-10-11 10:45:13,825 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 10:45:13,855 INFO Flash connected
+2019-10-11 10:45:13,860 INFO Recive data
+2019-10-11 10:45:13,862 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 10:45:13,864 INFO Flash connected
+2019-10-11 10:45:13,870 INFO Recive data
+2019-10-11 10:45:13,871 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 10:45:13,874 INFO Flash connected
+2019-10-11 10:45:13,878 INFO Recive data
+2019-10-11 10:45:13,880 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 10:45:13,883 INFO Flash connected
+2019-10-11 10:45:13,887 INFO Recive data
+2019-10-11 10:45:13,889 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 10:45:18,864 INFO Flash connected
+2019-10-11 10:45:18,868 INFO Recive data
+2019-10-11 10:45:18,869 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 10:45:23,592 INFO Sender session trip
+2019-10-11 10:45:23,595 INFO Sender session trip
+2019-10-11 10:45:23,597 INFO Sender session trip
+2019-10-11 10:45:23,600 INFO Sender session trip
+2019-10-11 10:45:23,602 INFO Sender session trip
+2019-10-11 10:45:23,605 INFO Reader connected
+2019-10-11 10:45:23,608 INFO Reader Disconnected
+2019-10-11 11:23:30,960 INFO Mongo and ini
+2019-10-11 11:23:30,973 INFO Reader connected
+2019-10-11 11:23:31,031 INFO Reader connected
+2019-10-11 11:23:31,035 INFO Reader connected
+2019-10-11 11:23:31,036 INFO Reader connected
+2019-10-11 11:23:31,037 INFO Reader Disconnected
+2019-10-11 11:23:31,041 INFO Flash connected
+2019-10-11 11:23:31,044 INFO Recive data
+2019-10-11 11:23:31,044 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:23:31,060 INFO Flash connected
+2019-10-11 11:23:31,062 INFO Recive data
+2019-10-11 11:23:31,062 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:23:31,063 INFO Flash connected
+2019-10-11 11:23:31,065 INFO Recive data
+2019-10-11 11:23:31,065 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:23:31,066 INFO Flash connected
+2019-10-11 11:23:31,068 INFO Recive data
+2019-10-11 11:23:31,069 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:23:31,069 INFO Flash connected
+2019-10-11 11:23:31,071 INFO Recive data
+2019-10-11 11:23:31,072 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:24:43,380 INFO Mongo and ini
+2019-10-11 11:24:43,381 INFO Reader connected
+2019-10-11 11:24:43,420 INFO Reader connected
+2019-10-11 11:24:43,422 INFO Reader connected
+2019-10-11 11:24:43,423 INFO Reader connected
+2019-10-11 11:24:43,425 INFO Reader Disconnected
+2019-10-11 11:24:43,426 INFO Flash connected
+2019-10-11 11:24:43,428 INFO Recive data
+2019-10-11 11:24:43,428 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:24:43,433 INFO Flash connected
+2019-10-11 11:24:43,435 INFO Recive data
+2019-10-11 11:24:43,436 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:24:43,437 INFO Flash connected
+2019-10-11 11:24:43,439 INFO Recive data
+2019-10-11 11:24:43,440 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:24:43,441 INFO Flash connected
+2019-10-11 11:24:43,444 INFO Recive data
+2019-10-11 11:24:43,445 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:24:43,446 INFO Flash connected
+2019-10-11 11:24:43,448 INFO Recive data
+2019-10-11 11:24:43,453 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:24:43,656 INFO Flash connected
+2019-10-11 11:24:43,658 INFO Recive data
+2019-10-11 11:24:43,659 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:24:43,660 INFO Sender session trip
+2019-10-11 11:24:43,661 INFO Sender session trip
+2019-10-11 11:24:43,662 INFO Sender session trip
+2019-10-11 11:24:43,664 INFO Sender session trip
+2019-10-11 11:24:43,665 INFO Sender session trip
+2019-10-11 11:24:43,666 INFO Reader connected
+2019-10-11 11:24:43,667 INFO Reader Disconnected
+2019-10-11 11:26:20,844 INFO Mongo and ini
+2019-10-11 11:26:20,844 INFO Reader connected
+2019-10-11 11:26:20,885 INFO Reader connected
+2019-10-11 11:26:20,886 INFO Reader connected
+2019-10-11 11:26:20,888 INFO Reader connected
+2019-10-11 11:26:20,889 INFO Reader Disconnected
+2019-10-11 11:26:20,890 INFO Flash connected
+2019-10-11 11:26:20,892 INFO Recive data
+2019-10-11 11:26:20,893 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:26:20,898 INFO Flash connected
+2019-10-11 11:26:20,900 INFO Recive data
+2019-10-11 11:26:20,900 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:26:20,901 INFO Flash connected
+2019-10-11 11:26:20,904 INFO Recive data
+2019-10-11 11:26:20,904 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:26:20,905 INFO Flash connected
+2019-10-11 11:26:20,907 INFO Recive data
+2019-10-11 11:26:20,908 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:26:20,909 INFO Flash connected
+2019-10-11 11:26:20,910 INFO Recive data
+2019-10-11 11:26:20,911 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:26:21,479 INFO Flash connected
+2019-10-11 11:26:21,480 INFO Recive data
+2019-10-11 11:26:21,481 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:26:21,808 INFO Sender session trip
+2019-10-11 11:26:21,809 INFO Sender session trip
+2019-10-11 11:26:21,811 INFO Sender session trip
+2019-10-11 11:26:21,812 INFO Sender session trip
+2019-10-11 11:26:21,813 INFO Sender session trip
+2019-10-11 11:26:21,815 INFO Reader connected
+2019-10-11 11:26:21,816 INFO Reader Disconnected
+2019-10-11 11:38:07,983 INFO Mongo and ini
+2019-10-11 11:38:07,983 INFO Reader connected
+2019-10-11 11:38:08,023 INFO Reader connected
+2019-10-11 11:38:08,024 INFO Reader connected
+2019-10-11 11:38:08,026 INFO Reader connected
+2019-10-11 11:38:08,027 INFO Reader Disconnected
+2019-10-11 11:38:08,028 INFO Flash connected
+2019-10-11 11:38:55,862 INFO Mongo and ini
+2019-10-11 11:38:55,862 INFO Reader connected
+2019-10-11 11:38:55,903 INFO Reader connected
+2019-10-11 11:38:55,905 INFO Reader connected
+2019-10-11 11:38:55,906 INFO Reader connected
+2019-10-11 11:38:55,907 INFO Reader Disconnected
+2019-10-11 11:38:55,909 INFO Flash connected
+2019-10-11 11:38:55,910 INFO Recive data
+2019-10-11 11:38:55,911 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:41:45,425 INFO Mongo and ini
+2019-10-11 11:41:45,425 INFO Reader connected
+2019-10-11 11:41:45,466 INFO Reader connected
+2019-10-11 11:41:45,468 INFO Reader connected
+2019-10-11 11:41:45,469 INFO Reader connected
+2019-10-11 11:41:45,471 INFO Reader Disconnected
+2019-10-11 11:41:45,472 INFO Flash connected
+2019-10-11 11:41:45,474 INFO Recive data
+2019-10-11 11:41:45,475 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:42:32,363 INFO Mongo and ini
+2019-10-11 11:42:32,363 INFO Reader connected
+2019-10-11 11:42:32,404 INFO Reader connected
+2019-10-11 11:42:32,405 INFO Reader connected
+2019-10-11 11:42:32,407 INFO Reader connected
+2019-10-11 11:42:32,408 INFO Reader Disconnected
+2019-10-11 11:42:32,409 INFO Flash connected
+2019-10-11 11:42:32,411 INFO Recive data
+2019-10-11 11:42:32,411 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:43:03,586 INFO Mongo and ini
+2019-10-11 11:43:03,587 INFO Reader connected
+2019-10-11 11:43:03,626 INFO Reader connected
+2019-10-11 11:43:03,627 INFO Reader connected
+2019-10-11 11:43:03,629 INFO Reader connected
+2019-10-11 11:43:03,630 INFO Reader Disconnected
+2019-10-11 11:43:03,631 INFO Flash connected
+2019-10-11 11:43:03,632 INFO Recive data
+2019-10-11 11:43:03,633 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:44:05,436 INFO Mongo and ini
+2019-10-11 11:44:05,436 INFO Reader connected
+2019-10-11 11:44:05,479 INFO Reader connected
+2019-10-11 11:44:05,480 INFO Reader connected
+2019-10-11 11:44:05,482 INFO Reader connected
+2019-10-11 11:44:05,483 INFO Reader Disconnected
+2019-10-11 11:44:05,484 INFO Flash connected
+2019-10-11 11:44:05,486 INFO Recive data
+2019-10-11 11:44:05,487 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:44:37,001 INFO Mongo and ini
+2019-10-11 11:44:37,001 INFO Reader connected
+2019-10-11 11:44:37,043 INFO Reader connected
+2019-10-11 11:44:37,044 INFO Reader connected
+2019-10-11 11:44:37,046 INFO Reader connected
+2019-10-11 11:44:37,047 INFO Reader Disconnected
+2019-10-11 11:44:37,048 INFO Flash connected
+2019-10-11 11:44:37,050 INFO Recive data
+2019-10-11 11:44:37,051 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:45:18,054 INFO Mongo and ini
+2019-10-11 11:45:18,054 INFO Reader connected
+2019-10-11 11:45:18,095 INFO Reader connected
+2019-10-11 11:45:18,096 INFO Reader connected
+2019-10-11 11:45:18,097 INFO Reader connected
+2019-10-11 11:45:18,099 INFO Reader Disconnected
+2019-10-11 11:45:18,100 INFO Flash connected
+2019-10-11 11:45:18,102 INFO Recive data
+2019-10-11 11:45:18,102 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:45:18,107 INFO Flash connected
+2019-10-11 11:45:18,108 INFO Recive data
+2019-10-11 11:45:18,109 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:45:18,110 INFO Flash connected
+2019-10-11 11:45:18,111 INFO Recive data
+2019-10-11 11:45:18,111 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:45:18,112 INFO Flash connected
+2019-10-11 11:45:18,114 INFO Recive data
+2019-10-11 11:45:18,114 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:45:18,115 INFO Flash connected
+2019-10-11 11:45:18,117 INFO Recive data
+2019-10-11 11:45:18,118 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:45:42,411 INFO Mongo and ini
+2019-10-11 11:45:42,412 INFO Reader connected
+2019-10-11 11:45:42,453 INFO Reader connected
+2019-10-11 11:45:42,454 INFO Reader connected
+2019-10-11 11:45:42,455 INFO Reader connected
+2019-10-11 11:45:42,456 INFO Reader Disconnected
+2019-10-11 11:45:42,458 INFO Flash connected
+2019-10-11 11:45:42,459 INFO Recive data
+2019-10-11 11:45:42,460 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:12,126 INFO Mongo and ini
+2019-10-11 11:46:12,126 INFO Reader connected
+2019-10-11 11:46:12,170 INFO Reader connected
+2019-10-11 11:46:12,171 INFO Reader connected
+2019-10-11 11:46:12,172 INFO Reader connected
+2019-10-11 11:46:12,173 INFO Reader Disconnected
+2019-10-11 11:46:12,174 INFO Flash connected
+2019-10-11 11:46:12,176 INFO Recive data
+2019-10-11 11:46:12,177 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:12,181 INFO Flash connected
+2019-10-11 11:46:12,182 INFO Recive data
+2019-10-11 11:46:12,183 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:12,184 INFO Flash connected
+2019-10-11 11:46:12,185 INFO Recive data
+2019-10-11 11:46:12,186 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:12,187 INFO Flash connected
+2019-10-11 11:46:12,188 INFO Recive data
+2019-10-11 11:46:12,189 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:12,190 INFO Flash connected
+2019-10-11 11:46:12,191 INFO Recive data
+2019-10-11 11:46:12,192 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:46:53,980 INFO Mongo and ini
+2019-10-11 11:46:53,980 INFO Reader connected
+2019-10-11 11:46:54,020 INFO Reader connected
+2019-10-11 11:46:54,021 INFO Reader connected
+2019-10-11 11:46:54,023 INFO Reader connected
+2019-10-11 11:46:54,024 INFO Reader Disconnected
+2019-10-11 11:46:54,026 INFO Flash connected
+2019-10-11 11:46:54,028 INFO Recive data
+2019-10-11 11:46:54,029 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:54,034 INFO Flash connected
+2019-10-11 11:46:54,037 INFO Recive data
+2019-10-11 11:46:54,037 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:54,038 INFO Flash connected
+2019-10-11 11:46:54,041 INFO Recive data
+2019-10-11 11:46:54,041 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:54,042 INFO Flash connected
+2019-10-11 11:46:54,044 INFO Recive data
+2019-10-11 11:46:54,045 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:46:54,046 INFO Flash connected
+2019-10-11 11:46:54,048 INFO Recive data
+2019-10-11 11:46:54,049 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:47:23,964 INFO Mongo and ini
+2019-10-11 11:47:23,964 INFO Reader connected
+2019-10-11 11:47:24,004 INFO Reader connected
+2019-10-11 11:47:24,006 INFO Reader connected
+2019-10-11 11:47:24,007 INFO Reader connected
+2019-10-11 11:47:24,009 INFO Reader Disconnected
+2019-10-11 11:47:24,010 INFO Flash connected
+2019-10-11 11:47:24,013 INFO Recive data
+2019-10-11 11:47:24,013 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:47:24,018 INFO Flash connected
+2019-10-11 11:47:24,020 INFO Recive data
+2019-10-11 11:47:24,021 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:47:24,022 INFO Flash connected
+2019-10-11 11:47:24,024 INFO Recive data
+2019-10-11 11:47:24,025 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:47:24,026 INFO Flash connected
+2019-10-11 11:47:24,028 INFO Recive data
+2019-10-11 11:47:24,028 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:47:24,029 INFO Flash connected
+2019-10-11 11:47:24,031 INFO Recive data
+2019-10-11 11:47:24,032 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 11:47:24,552 INFO Flash connected
+2019-10-11 11:47:24,554 INFO Recive data
+2019-10-11 11:47:24,555 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 11:47:24,877 INFO Sender session trip
+2019-10-11 11:47:24,878 INFO Sender session trip
+2019-10-11 11:47:24,880 INFO Sender session trip
+2019-10-11 11:47:24,881 INFO Sender session trip
+2019-10-11 11:47:24,882 INFO Sender session trip
+2019-10-11 11:47:24,883 INFO Reader connected
+2019-10-11 11:47:24,884 INFO Reader Disconnected
+2019-10-11 12:28:52,106 INFO Mongo and ini
+2019-10-11 12:28:52,129 INFO Reader connected
+2019-10-11 12:28:52,179 INFO Reader connected
+2019-10-11 12:28:52,181 INFO Reader connected
+2019-10-11 12:28:52,182 INFO Reader connected
+2019-10-11 12:28:52,184 INFO Reader Disconnected
+2019-10-11 12:28:52,186 INFO Flash connected
+2019-10-11 12:28:52,189 INFO Recive data
+2019-10-11 12:28:52,190 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:28:52,209 INFO Flash connected
+2019-10-11 12:28:52,211 INFO Recive data
+2019-10-11 12:28:52,211 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:28:52,213 INFO Flash connected
+2019-10-11 12:28:52,215 INFO Recive data
+2019-10-11 12:28:52,216 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:28:52,217 INFO Flash connected
+2019-10-11 12:28:52,219 INFO Recive data
+2019-10-11 12:28:52,220 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:28:52,221 INFO Flash connected
+2019-10-11 12:28:52,223 INFO Recive data
+2019-10-11 12:28:52,224 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 12:28:52,818 INFO Flash connected
+2019-10-11 12:28:52,820 INFO Recive data
+2019-10-11 12:28:52,820 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:28:53,143 INFO Sender session trip
+2019-10-11 12:28:53,145 INFO Sender session trip
+2019-10-11 12:28:53,146 INFO Sender session trip
+2019-10-11 12:28:53,147 INFO Sender session trip
+2019-10-11 12:28:53,148 INFO Sender session trip
+2019-10-11 12:28:53,150 INFO Reader connected
+2019-10-11 12:28:53,151 INFO Reader Disconnected
+2019-10-11 12:59:53,758 INFO Mongo and ini
+2019-10-11 12:59:53,768 INFO Reader connected
+2019-10-11 12:59:53,808 INFO Reader connected
+2019-10-11 12:59:53,810 INFO Reader connected
+2019-10-11 12:59:53,811 INFO Reader connected
+2019-10-11 12:59:53,812 INFO Reader Disconnected
+2019-10-11 12:59:53,813 INFO Flash connected
+2019-10-11 12:59:53,815 INFO Recive data
+2019-10-11 12:59:53,815 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:59:53,819 INFO Flash connected
+2019-10-11 12:59:53,821 INFO Recive data
+2019-10-11 12:59:53,821 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:59:53,822 INFO Flash connected
+2019-10-11 12:59:53,824 INFO Recive data
+2019-10-11 12:59:53,824 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:59:53,825 INFO Flash connected
+2019-10-11 12:59:53,827 INFO Recive data
+2019-10-11 12:59:53,827 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 12:59:53,828 INFO Flash connected
+2019-10-11 12:59:53,830 INFO Recive data
+2019-10-11 12:59:53,830 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 13:30:43,793 INFO Mongo and ini
+2019-10-11 13:30:43,814 INFO Reader connected
+2019-10-11 13:30:43,925 INFO Reader connected
+2019-10-11 13:30:43,929 INFO Reader connected
+2019-10-11 13:30:43,930 INFO Reader connected
+2019-10-11 13:30:43,931 INFO Reader Disconnected
+2019-10-11 13:30:43,934 INFO Flash connected
+2019-10-11 13:30:43,937 INFO Recive data
+2019-10-11 13:30:43,937 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:43,950 INFO Flash connected
+2019-10-11 13:30:43,952 INFO Recive data
+2019-10-11 13:30:43,953 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:43,953 INFO Flash connected
+2019-10-11 13:30:43,955 INFO Recive data
+2019-10-11 13:30:43,956 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:43,957 INFO Flash connected
+2019-10-11 13:30:43,959 INFO Recive data
+2019-10-11 13:30:43,959 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:43,960 INFO Flash connected
+2019-10-11 13:30:43,961 INFO Recive data
+2019-10-11 13:30:43,962 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 13:30:44,535 INFO Flash connected
+2019-10-11 13:30:44,537 INFO Recive data
+2019-10-11 13:30:44,537 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:44,860 INFO Sender session trip
+2019-10-11 13:30:44,862 INFO Sender session trip
+2019-10-11 13:30:44,863 INFO Sender session trip
+2019-10-11 13:30:44,864 INFO Sender session trip
+2019-10-11 13:30:44,865 INFO Sender session trip
+2019-10-11 13:30:44,866 INFO Reader connected
+2019-10-11 13:30:44,867 INFO Reader Disconnected
+2019-10-11 13:30:59,269 INFO Mongo and ini
+2019-10-11 13:30:59,269 INFO Reader connected
+2019-10-11 13:30:59,310 INFO Reader connected
+2019-10-11 13:30:59,312 INFO Reader connected
+2019-10-11 13:30:59,313 INFO Reader connected
+2019-10-11 13:30:59,314 INFO Reader Disconnected
+2019-10-11 13:30:59,315 INFO Flash connected
+2019-10-11 13:30:59,317 INFO Recive data
+2019-10-11 13:30:59,318 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:59,322 INFO Flash connected
+2019-10-11 13:30:59,323 INFO Recive data
+2019-10-11 13:30:59,324 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:59,325 INFO Flash connected
+2019-10-11 13:30:59,326 INFO Recive data
+2019-10-11 13:30:59,327 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:59,328 INFO Flash connected
+2019-10-11 13:30:59,330 INFO Recive data
+2019-10-11 13:30:59,330 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:30:59,331 INFO Flash connected
+2019-10-11 13:30:59,333 INFO Recive data
+2019-10-11 13:30:59,334 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 13:31:42,183 INFO Mongo and ini
+2019-10-11 13:31:42,183 INFO Reader connected
+2019-10-11 13:31:42,224 INFO Reader connected
+2019-10-11 13:31:42,226 INFO Reader connected
+2019-10-11 13:31:42,227 INFO Reader connected
+2019-10-11 13:31:42,229 INFO Reader Disconnected
+2019-10-11 13:31:42,230 INFO Flash connected
+2019-10-11 13:31:42,232 INFO Recive data
+2019-10-11 13:31:42,233 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:31:42,237 INFO Flash connected
+2019-10-11 13:31:42,239 INFO Recive data
+2019-10-11 13:31:42,240 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:31:42,241 INFO Flash connected
+2019-10-11 13:31:42,242 INFO Recive data
+2019-10-11 13:31:42,243 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:31:42,244 INFO Flash connected
+2019-10-11 13:31:42,246 INFO Recive data
+2019-10-11 13:31:42,246 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:31:42,247 INFO Flash connected
+2019-10-11 13:31:42,249 INFO Recive data
+2019-10-11 13:31:42,250 INFO call a_log() id-0101181216.1.253.0.4.
+2019-10-11 13:31:42,779 INFO Flash connected
+2019-10-11 13:31:42,781 INFO Recive data
+2019-10-11 13:31:42,781 INFO call a_log() id-0100541216.1.253.0.5.
+2019-10-11 13:31:43,113 INFO Sender session trip
+2019-10-11 13:31:43,114 INFO Sender session trip
+2019-10-11 13:31:43,116 INFO Sender session trip
+2019-10-11 13:31:43,117 INFO Sender session trip
+2019-10-11 13:31:43,118 INFO Sender session trip
+2019-10-11 13:31:43,119 INFO Reader connected
+2019-10-11 13:31:43,120 INFO Reader Disconnected
