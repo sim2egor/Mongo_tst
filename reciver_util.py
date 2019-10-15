@@ -1,4 +1,4 @@
-def run_reciver(No_Session, r_path, dbcollection):  # работа с файлом ресивера
+def run_reciver(No_Session, r_path, dbcollection, list_doc):  # работа с файлом ресивера
     time_start = ""
     time_finish = ""
     try:
@@ -12,19 +12,18 @@ def run_reciver(No_Session, r_path, dbcollection):  # работа с файло
         if "941fd277" in line:  # Kiosk session is startet
             Start_Session = True
         if "<8797897123>" in line:
-            print(line)
             time_start = list[9]
             time_finish = list[11]
 
         if "973b3d09" in line and Start_Session:  # сессия началась и трип создан
-            print("2")
-            print(line)
             query = {}
             query = {"Session_record": {
                 "$elemMatch": {"No_Session": No_Session, "Trip": {"$elemMatch": {"Interval.Start": time_start}}}}}
-            cursor = dbcollection.find_one(query)
+            cursor = dbcollection.find(query)
             if cursor:
-                tmpSid = cursor['Sid']
+                for doc in cursor:
+                    print(doc)
+#                tmpSid = cursor['Sid']
                 # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
                 # doc_value = {"$push": {"Session_record.$.Trip": {
                 #     "Interval": {"Start": list[11],

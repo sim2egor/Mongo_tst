@@ -1,9 +1,20 @@
 import configparser
 import logging
+import operator
+from functools import reduce  # forward compatibility for Python 3
 
 import pymongo
 
 import reader_util
+
+
+def getFromDict(dataDict, mapList):
+    return reduce(operator.getitem, mapList, dataDict)
+
+
+def setInDict(dataDict, mapList, value):
+    getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
+
 
 logger = logging.getLogger('myapp')
 hdlr = logging.FileHandler('myapp.log')
@@ -25,8 +36,8 @@ config_d = config['DEFAULT'].getboolean('is_debug')
 if config_d:
     dbcollection.drop()
 f = open(w_path + "reader.log")
-logger.info('Mongo and ini')
-
+logger.info('Mongo end init')
+list_doc = []
 for line in f:
     list = line.split()
     if "main - INFO - Reader connected" in line:
@@ -38,9 +49,9 @@ for line in f:
 
         cursor = dbcollection.find_one(query)
         if cursor:  # есть уже
+            list_doc.append(cursor)
             print(cursor)
         else:  # новый
-            # bsoncxx::document::value
             doc_value = [{
                 "No_AS": "",
                 "IP": list[10],
@@ -52,21 +63,28 @@ for line in f:
 
             }]
             dbcollection.insert(doc_value)
+            list_doc.append(doc_value[0])
             Sid = list[12]
-
+        continue
     if "main - INFO - Reader disconnected." in line:
         logger.info('Reader Disconnected')
-
         query = {"Sid": list[12]}
         cursor = dbcollection.find_one(query)
         if cursor is not None:
             newparam = {"$set": {"Disconnected": [{"Data": list[0], "Time": list[1]}]}}
             dbcollection.update_one(query, newparam)
+            # работа с объектом
+            for doc in list_doc:
+                if doc["Sid"] in list[12]:
+                    doc["Disconnected"] = {"Data": list[0], "Time": list[1]}
+                    break
+            else:
+                print("Not found")
             Sid = None
-
+        continue
+    # вставлен флеш накопитель
     if "main - INFO - Flash drive connected to reader" in line:
         logger.info('Flash connected')
-
         query = {"Sid": list[19]}
         cursor = dbcollection.find_one(query)
         if cursor:
@@ -75,23 +93,28 @@ for line in f:
                                  "No_Flash": "", }}}
             dbcollection.update(query, newparam)
             newparam = {"$set": {"No_AS": list[17]}}
-
             dbcollection.update(query, newparam)
-
             print(cursor)
-
             No_AS = list[17]
+            # работа с объектом
+            for doc in list_doc:
+                if doc["Sid"] in list[19]:
+                    doc["Flash_record"] = {"Connection": [{"Data": list[0], "Time": list[1]}], "No_AS": list[17],
+                                           "No_Flash": "", }
+                    break
+            else:
+                print("Not found")
+            print(doc)
+        continue
     if "Received data from shell: b'reading" in line:
         logger.info('Recive data')
-
         query["Flash_record.No_AS"] = No_AS
         cursor = dbcollection.find_one(query)
         if cursor is not None:
             # создать новую коллекцию
             # TODO session
             logger.info('call a_log() %s', No_AS)
-#            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1])
-            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1],w_path,r_path,dbcollection)
+            #            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1])
             # добавить в основную коллекцию
             doc_value = {"$push": {"ReaderNoAS":
                 {
@@ -104,10 +127,30 @@ for line in f:
                 }
             }
             }
+            # работа с объектом
+            for doc in list_doc:
+                if doc.get("Flash_record") != None:
+                    doc2 = getFromDict(doc, ["Flash_record", "No_AS"])
+                    if doc2 in No_AS:
+                        print(doc2)
+                        doc["ReaderNoAS"] = {
+                            "data": list[0],
+                            "time": list[1],
+                            "IP": list[10],
+                            "No_AS": No_AS,
+                            "Connected": list[1],
+                            "Disconnected": ""
+                        }
+
+                    break
+            else:
+                print("No Record")
             dbcollection.update(query, doc_value)
+            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1], w_path, r_path, dbcollection,list_doc)
+
+        continue
     if "<e600812c>" in line:
         logger.info('Sender session trip')
-
         query = {}
         query["Session_record.No_Session"] = list[9]
         cursor = dbcollection.find_one(query)
@@ -125,35 +168,13 @@ for line in f:
                 "Log_Sender": list[22]}
             }
             }
-
             dbcollection.update(query, doc_value)
+            # работа с объектом
+            for doc in list_doc:
+                if doc.get("Session_record"):
+                    nosession=getFromDict(doc,["Session_record","No_Session"])
+                    if nosession in list[9]:
+                        print (nosession)
 
-print("--------------")
-
-# if (str.contains("Received data from shell: b'reading"))
-# {
-#     QList<QByteArray> data = line.split(' ');
-#     using builder::stream::array;
-#     using builder::stream::document;
-#
-#     using builder::stream::close_array;
-#     using builder::stream::close_document;
-#     using builder::stream::open_array;
-#     using builder::stream::open_document;
-#
-#     collection.find_one_and_update(bsoncxx::builder::stream::document{}
-#                                        << "Sid" << Sid
-#                                        << bsoncxx::builder::stream::finalize,
-#                                    bsoncxx::builder::stream::document{}
-#                                        << "$push" << open_document << "modify" << open_document << "Time" << data[1].toStdString() << "IP" << data[12].toStdString() << "Result" << data[11].toStdString() << close_document << close_document
-#
-#
-#
-
-# dat=[
-#  { "id":110, "data":{"Country":"ES","Count":64}},
-#  { "id":112, "data":{"Country":"ES","Count":5}},
-#  { "id":114, "data":{"Country":"UK","Count":3}},
-#  {"datestamp":datetime.datetime.utcnow()}
-# ]
-# dbcollection.insert(dat)
+        continue
+print("------finish--------")
