@@ -1,9 +1,10 @@
 from datetime import datetime
+import threading
 
 import reciver_util
 
 
-def a_log(Sid, Num_AS, dat, tim, w_path, r_path, dbcollection, list_doc):
+def a_log(Sid, Num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, condition):
     try:
         file = open(w_path + "reader_" + Num_AS + "log", "rt")
     except Exception as err:
@@ -56,7 +57,7 @@ def a_log(Sid, Num_AS, dat, tim, w_path, r_path, dbcollection, list_doc):
                                             }]}
                 No_Session = list2[3]
         if "9fa17e68" in line:  # закончили чтение
-            reciver_util.run_reciver(No_Session, r_path, dbcollection,list_doc)
-
-
+            #reciver_util.run_reciver(No_Session, r_path, dbcollection,list_doc)
+            my_thread = threading.Thread(target=reciver_util.run_reciver, args=(No_Session, r_path, dbcollection, list_doc, condition,))
+            my_thread.start()
 pass

@@ -1,4 +1,6 @@
-def run_reciver(No_Session, r_path, dbcollection, list_doc):  # работа с файлом ресивера
+import threading
+
+def run_reciver(No_Session, r_path, dbcollection, list_doc, condition):  # работа с файлом ресивера
     time_start = ""
     time_finish = ""
     try:
@@ -7,6 +9,8 @@ def run_reciver(No_Session, r_path, dbcollection, list_doc):  # работа с 
         print(err)
         return
     Start_Session = False
+    condition.wait()
+    condition.acquire()
     for line in file_reciver:
         list = line.split()
         if "941fd277" in line:  # Kiosk session is startet
