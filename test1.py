@@ -8,17 +8,21 @@ from functools import reduce  # forward compatibility for Python 3
 import pymongo
 
 
-def run_reciver(no_Session, r_path, dbcollection, list_doc, condition):  # работа с файлом ресивера    time_start = ""
+def run_reciver(no_session, r_path, dbcollection, list_doc, condition):  # работа с файлом ресивера    time_start = ""
+
+    condition.acquire()
     try:
         file_receiver = open(r_path + "receiver.log", "rt")
     except Exception as err:
         print(err)
         return
     start_session = False
+    condition.notify()
+    condition.release()
     with condition:
         condition.wait()
     condition.acquire()
-    logger("+++Start receiver")
+    logger.info("+++Start receiver")
     for line in file_receiver:
         list = line.split()
         if "941fd277" in line:  # Kiosk session is startet
@@ -29,14 +33,17 @@ def run_reciver(no_Session, r_path, dbcollection, list_doc, condition):  # ра�
 
         if "973b3d09" in line and start_session:  # сессия началась и трип создан
             query = {}
-            query = {"Session_record": {
-                "$elemMatch": {"No_Session": no_Session, "Trip": {"$elemMatch": {"Interval.Start": time_start}}}}}
+            query["Session_record.Trip.Interval.Start"] = time_start+"000" #time in microsec
+            # query = {"Session_record": {
+            #     "$elemMatch": {"no_session": no_session, "Trip": {"$elemMatch": {"Interval.Start": time_start}}}}}
             cursor = dbcollection.find(query)
             if cursor:
+                logger.info("session trip match %s, %s",time_start,no_session)
                 for doc in cursor:
+
                     print(doc)
         #                tmpSid = cursor['Sid']
-        # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
+        # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"no_session": list[9]}}}
         # doc_value = {"$push": {"Session_record.$.Trip": {
         #     "Interval": {"Start": list[11],
         #                  "Finish": list[15]
@@ -56,15 +63,16 @@ def run_reciver(no_Session, r_path, dbcollection, list_doc, condition):  # ра�
             time_finish = ""
             time_start = ""
             # отрабатываем энкодер
+    condition.notify()
+    condition.release()
     pass
-
 
 
 def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, condition):
     try:
         file = open(w_path + "reader_" + num_AS + "log", "rt")
     except Exception as err:
-        print('Error %1',err)
+        print('Error %1', err)
         return
     print(tim)
     is_good = False
@@ -114,14 +122,11 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
                 no_session = list2[3]
         if "9fa17e68" in line:  # закончили чтение
             # reciver_util.run_reciver(no_session, r_path, dbcollection,list_doc)
-            condition.acquire()
             my_thread = threading.Thread(target=run_reciver,
                                          args=(no_session, r_path, dbcollection, list_doc, condition,))
             worker_list.append(my_thread)
             my_thread.start()
             logger.info("condition ")
-
-
 pass
 
 
@@ -137,9 +142,9 @@ def setInDict(dataDict, mapList, value):
 condition = threading.Condition()
 # закрыли mutex
 condition.acquire()
-worker_list=[]
+worker_list = []
 logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler('myapp.log')
+hdlr = logging.FileHandler('myapp.log','w')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
@@ -275,11 +280,11 @@ for line in f:
     if "<e600812c>" in line:
         logger.info('Sender session trip')
         query = {}
-        query["Session_record.No_Session"] = list[9]
+        query["Session_record.no_session"] = list[9]
         cursor = dbcollection.find_one(query)
         if cursor:
             tmpSid = cursor['Sid']
-            query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"No_Session": list[9]}}}
+            query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"no_session": list[9]}}}
             doc_value = {"$push": {"Session_record.$.Trip": {
                 "Interval": {"Start": list[11],
                              "Finish": list[15]
@@ -295,13 +300,15 @@ for line in f:
             # работа с объектом
             for doc in list_doc:
                 if doc.get("Session_record"):
-                    nosession = getFromDict(doc, ["Session_record", "No_Session"])
+                    nosession = getFromDict(doc, ["Session_record", "no_session"])
                     if nosession in list[9]:
                         print(nosession)
-        if "bd2906f4" in line:  # sender: <bd2906f4> Successfully connected with receiver at 127.0.0.1:7002
-            condition.notify()
-
+    if "sender: <bd2906f4>" in line:  # sender: <bd2906f4> Successfully connected with receiver at 127.0.0.1:7002
+        logger.info("sender connected to server")
+        condition.notify()
+        condition.release()
         continue
+
 for cond in worker_list:
     cond.join()
 print("------finish--------")
