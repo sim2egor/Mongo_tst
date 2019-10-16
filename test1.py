@@ -40,7 +40,6 @@ def run_reciver(no_session, r_path, dbcollection, list_doc, condition):  # ра�
             if cursor:
                 logger.info("session trip match %s, %s",time_start,no_session)
                 for doc in cursor:
-
                     print(doc)
         #                tmpSid = cursor['Sid']
         # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"no_session": list[9]}}}
@@ -50,7 +49,7 @@ def run_reciver(no_session, r_path, dbcollection, list_doc, condition):  # ра�
         #                  },
         #     "Loco_ID": list[4],
         #     "Cabine_No": list[20],
-        #     "Trip_No": "",
+        #     "Trip_No": "", ----------------------It is!!!!!!!add
         #     "Global_No": "",
         #     "Log_Sender": list[22]}
         # }
@@ -126,7 +125,7 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
                                          args=(no_session, r_path, dbcollection, list_doc, condition,))
             worker_list.append(my_thread)
             my_thread.start()
-            logger.info("condition ")
+            logger.info(" new receiver thread")
 pass
 
 
