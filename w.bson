@@ -1,0 +1,32 @@
+                 {'_id': ObjectId('5dadb1a38fb6767f9be7784d'),
+                  'No_AS': 'id-0101181216.1.253.0.4.',
+                  'Sid': '93432754a93e42659f75f00067fc8c35',
+                  'Flash_record':
+                      [{'No_AS': 'id-0101181216.1.253.0.4.',
+                      'Connection':
+                          [{'Data': '2019-10-09',
+                           'Time': '11:01:56,497'}],
+                      'No_Flash': ''}],
+                  'Session_record': [
+                     {'No_AS': 'id-0101181216.1.253.0.4.', 'no_session': '2834',
+                      'Connection': [{'Data': '2019-Oct-09', 'Time': '11:02:02.366427'}],
+                         'Trip': [
+                             {'Trip_No': '', 'Interval': {'Start': '1538704040000', 'Finish': '1538741132000'},
+                             'Loco_ID': 'TH:0', 'Global_No': '1538704040000', 'Cabine_No': 'cabine:1',
+                             'Log_Sender': '/opt/log/sender_2019_10_09_10_47_13.log'},
+                             {'Trip_No': '', 'Interval': {'Start': '1538834071000', 'Finish': '1538849134000'},
+                             'Loco_ID': 'TH:0', 'Global_No': '1538834071000', 'Cabine_No': 'cabine:2',
+                             'Log_Sender': '/opt/log/sender_2019_10_09_10_47_13.log'},
+                             {'Trip_No': '', 'Interval': {'Start': '1538849315000', 'Finish': '1538849763000'},
+                             'Loco_ID': 'TH:0', 'Global_No': '1538849315000', 'Cabine_No': 'cabine:1',
+                             'Log_Sender': '/opt/log/sender_2019_10_09_10_47_13.log'},
+                             {'Trip_No': '', 'Interval': {'Start': '1538960089000', 'Finish': '1538975321000'},
+                             'Loco_ID': 'TH:0', 'Global_No': '1538960089000', 'Cabine_No': 'cabine:2',
+                             'Log_Sender': '/opt/log/sender_2019_10_09_10_47_13.log'},
+                             {'Trip_No': '', 'Interval': {'Start': '1538975321000', 'Finish': '1539057599000'},
+                             'Loco_ID': 'TH:0', 'Global_No': '1538975321000', 'Cabine_No': 'cabine:1',
+                             'Log_Sender': '/opt/log/sender_2019_10_09_10_47_13.log'}]}], 'IP': '1.253.0.4.',
+                  'ReaderNoAS': [
+                      {'data': '2019-10-09', 'No_AS': 'id-0101181216.1.253.0.4.', 'IP': 'shell:', 'Disconnected': '',
+                       'time': '11:01:58,020', 'Connected': '11:01:58,020'}],
+                  'Connection': [{'Data': '2019-10-09', 'Time': '10:47:16,072'}]}

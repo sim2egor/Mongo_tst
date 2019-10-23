@@ -33,38 +33,36 @@ def run_reciver(no_session, r_path, dbcollection, list_doc, condition):  # ра�
 
         if "973b3d09" in line and start_session:  # сессия началась и трип создан
             query = {}
-            query["Session_record.Trip.Interval.Start"] = time_start+"000" #time in microsec
+            query["Session_record.Trip.Interval.Start"] =  time_start+"000" #time in microsec
             # query = {"Session_record": {
-            #     "$elemMatch": {"no_session": no_session, "Trip": {"$elemMatch": {"Interval.Start": time_start}}}}}
-            cursor = dbcollection.find(query)
+            #     "$elemMatch": {"no_session": no_session,
+            #     "Trip": {"$elemMatch": {"Interval.Start": time_start+"000"}}}}}
+            cursor = dbcollection.find_one(query)
             if cursor:
-                logger.info("session trip match %s, %s",time_start,no_session)
-                for doc in cursor:
-                    print(doc)
-        #                tmpSid = cursor['Sid']
-        # query = {"Sid": tmpSid, "Session_record": {"$elemMatch": {"no_session": list[9]}}}
-        # doc_value = {"$push": {"Session_record.$.Trip": {
-        #     "Interval": {"Start": list[11],
-        #                  "Finish": list[15]
-        #                  },
-        #     "Loco_ID": list[4],
-        #     "Cabine_No": list[20],
-        #     "Trip_No": "", ----------------------It is!!!!!!!add
-        #     "Global_No": "",
-        #     "Log_Sender": list[22]}
-        # }
-        # }
-        #
-        # dbcollection.update(query, doc_value)
+                logger.info("session trip match %s, %s", time_start, no_session)
+                print (cursor)
+                sess= cursor["Session_record"]
+                #находим и заменяем
+                for item in sess: #list
+                    if item["no_session"] == no_session:
+                        trips=item["Trip"]
+                        for trip in trips: #dict
+                                tim=getFromDict(trip,["Interval","Start"])
+                                if tim == time_start+"000":
+                                    trip["Trip_No"]= list[10]
+                doc_value={"$set": cursor}
+                dbcollection.update(query,doc_value)
 
-        if "0641d919" in line:  # end Session
-            start_session = False
-            time_finish = ""
-            time_start = ""
-            # отрабатываем энкодер
+    if "0641d919" in line:  # end Session
+        start_session = False
+        time_finish = ""
+        time_start = ""
+        # отрабатываем энкодер
+
+
     condition.notify()
     condition.release()
-    pass
+pass
 
 
 def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, condition):
@@ -76,6 +74,7 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
     print(tim)
     is_good = False
     no_session = ""
+    disk_serial_num=""
     t_start = datetime.strptime(tim, '%H:%M:%S,%f')
     for line in file:
         list = line.split()
@@ -100,10 +99,11 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
                 doc_value = {"$push": {"Session_record":
                                            {"No_AS": num_AS,
                                             "no_session": list2[3],
-                                            "Connection": [{
+                                            "Connection": {
                                                 "Data": list[0],
                                                 "Time": list[1]
-                                            }]
+                                            },
+                                            "Disk_Serial":disk_serial_num
                                             }
                                        }
                              }
@@ -114,11 +114,15 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
                     if doc["Sid"] in sid:
                         doc["Session_record"] = {"No_AS": num_AS,
                                                  "no_session": list2[3],
-                                                 "Connection": [{
+                                                 "Connection": {
                                                      "Data": list[0],
                                                      "Time": list[1]
-                                                 }]}
+                                                 }}
                 no_session = list2[3]
+
+        if "6d10e09e" in line: #disk serial num
+            disk_serial_num =list[11]
+
         if "9fa17e68" in line:  # закончили чтение
             # reciver_util.run_reciver(no_session, r_path, dbcollection,list_doc)
             my_thread = threading.Thread(target=run_reciver,
@@ -126,6 +130,8 @@ def a_log(sid, num_AS, dat, tim, w_path, r_path, dbcollection, list_doc, conditi
             worker_list.append(my_thread)
             my_thread.start()
             logger.info(" new receiver thread")
+
+
 pass
 
 
@@ -143,7 +149,7 @@ condition = threading.Condition()
 condition.acquire()
 worker_list = []
 logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler('myapp.log','w')
+hdlr = logging.FileHandler('myapp.log', 'w')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
@@ -179,14 +185,15 @@ for line in f:
             list_doc.append(cursor)
             print(cursor)
         else:  # новый
+
             doc_value = [{
                 "No_AS": "",
                 "IP": list[10],
                 "Sid": list[12],
-                "Connection": [{
+                "Connection": {
                     "Data": list[0],
                     "Time": list[1]
-                }]
+                }
 
             }]
             dbcollection.insert(doc_value)
@@ -198,7 +205,7 @@ for line in f:
         query = {"Sid": list[12]}
         cursor = dbcollection.find_one(query)
         if cursor is not None:
-            newparam = {"$set": {"Disconnected": [{"Data": list[0], "Time": list[1]}]}}
+            newparam = {"$set": {"Disconnected": {"Data": list[0], "Time": list[1]}}}
             dbcollection.update_one(query, newparam)
             # работа с объектом
             for doc in list_doc:
@@ -216,7 +223,7 @@ for line in f:
         cursor = dbcollection.find_one(query)
         if cursor:
             newparam = {"$push": {
-                'Flash_record': {"Connection": [{"Data": list[0], "Time": list[1]}], "No_AS": list[17],
+                'Flash_record': {"Connection": {"Data": list[0], "Time": list[1]}, "No_AS": list[17],
                                  "No_Flash": "", }}}
             dbcollection.update(query, newparam)
             newparam = {"$set": {"No_AS": list[17]}}
@@ -226,7 +233,7 @@ for line in f:
             # работа с объектом
             for doc in list_doc:
                 if doc["Sid"] in list[19]:
-                    doc["Flash_record"] = {"Connection": [{"Data": list[0], "Time": list[1]}], "No_AS": list[17],
+                    doc["Flash_record"] = {"Connection": {"Data": list[0], "Time": list[1]}, "No_AS": list[17],
                                            "No_Flash": "", }
                     break
             else:
@@ -242,15 +249,15 @@ for line in f:
             # TODO session
             logger.info('call a_log() %s', no_AS)
             #            reader_util.a_log(cursor['Sid'], No_AS, list[0], list[1])
-            # добавить в основную коллекцию
+            # добавить в основную коллекцию- реадер исправен и получилданные от носителя?
             doc_value = {"$push": {"ReaderNoAS":
                 {
-                    "data": list[0],
-                    "time": list[1],
-                    "IP": list[10],
+                    "IP": list[12],
                     "No_AS": no_AS,
-                    "Connected": list[1],
-                    "Disconnected": ""
+                    "Connected": { "Data":list[0],"Time": list[1]
+                    },
+                    "Disconnected": {"Data":"","Time": ""
+                    }
                 }
             }
             }
@@ -288,7 +295,7 @@ for line in f:
                 "Interval": {"Start": list[11],
                              "Finish": list[15]
                              },
-                "Loco_ID": list[4],
+                "Loco_ID": list[18]+list[19],
                 "Cabine_No": list[20],
                 "Trip_No": "",
                 "Global_No": "",
