@@ -145,7 +145,7 @@ def setInDict(dataDict, mapList, value):
 
 # mutex
 condition = threading.Condition()
-# закрыли mutex
+# закрыли condition
 condition.acquire()
 worker_list = []
 logger = logging.getLogger('myapp')
@@ -162,8 +162,8 @@ print(config['DEFAULT']['w_path'])
 w_path = config['DEFAULT']['w_path']  # файлы реадера и сендера
 r_path = config['DEFAULT']['r_path']  # фалы ресивера и энкодера
 dbclient = pymongo.MongoClient('localhost', 27017)
-dbmy = dbclient["testdb"]
-dbcollection = dbmy["reader1"]
+dbmy = dbclient["quartz"]
+dbcollection = dbmy["asanalisys"]
 config_d = config['DEFAULT'].getboolean('is_debug')
 if config_d:
     dbcollection.drop()
